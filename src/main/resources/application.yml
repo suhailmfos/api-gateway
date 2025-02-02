@@ -10,11 +10,15 @@ spring:
           uri: lb://ORDER-SERVICE   # Load-balancing via Eureka
           predicates:
             - Path=/api/orders/**
+          filters:
+            - JwtAuthFilter
 
         - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/api/payments/**
+          filters:
+            - JwtAuthFilter
 eureka:
   client:
     serviceUrl:
